@@ -1,3 +1,5 @@
+import webbrowser
+
 from fpdf import FPDF
 
 
@@ -39,23 +41,30 @@ class PdfReport:
         file = FPDF(orientation='P', unit='pt', format='letter')
         file.add_page()
 
+        # Insert the image
+        file.image('files\\house.png', w=30, h=30)
+
         # Set the Font and title
-        file.set_font(family='Times', style='', size=24)
-        file.cell(w=0, h=30, txt='Flatmates Bill', border=1, align='C', ln=1)
+        file.set_font(family='Times', style='B', size=24)
+        file.cell(w=0, h=70, txt='Flatmates Bill', border=1, align='C', ln=1)
 
         # Set the "period" label with its corresponding value
-        file.cell(w=80, h=30, txt='Period:', border=1, align='')
-        file.cell(w=120, h=30, txt=bill.period, border=1, align='', ln=1)
+        file.set_font(family='Times', style='B', size=20)
+        file.cell(w=80, h=40, txt='Period:', border=0, align='')
+        file.cell(w=120, h=40, txt=bill.period, border=0, align='', ln=1)
 
         # Set the first flatmate and its amount due
-        file.cell(w=80, h=30, txt=flatmate1.name, border=1, align='')
-        file.cell(w=120, h=30, txt=f'$ {flatmate1_pays}', border=1, align='R', ln=1)
+        file.set_font(family='Times', style='', size=16)
+        file.cell(w=80, h=25, txt=flatmate1.name, border=0, align='')
+        file.cell(w=100, h=25, txt=f'$ {flatmate1_pays}', border=0, align='R', ln=1)
 
         # Set the second flatmate and its amount due
-        file.cell(w=80, h=30, txt=flatmate2.name, border=1, align='')
-        file.cell(w=120, h=30, txt=f'$ {flatmate2_pays}', border=1, align='R', ln=1)
+        file.cell(w=80, h=25, txt=flatmate2.name, border=0, align='')
+        file.cell(w=100, h=25, txt=f'$ {flatmate2_pays}', border=0, align='R', ln=1)
 
         file.output(name=self.filename)
+
+        webbrowser.open(self.filename)
 
 
 the_bill = Bill(amount=120, period='march 2022')
