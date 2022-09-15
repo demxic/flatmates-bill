@@ -1,4 +1,4 @@
-from main import FlatMate, Bill
+from flat import Bill, FlatMate
 
 
 def test_flatmate_init():
@@ -14,5 +14,5 @@ def test_pays():
     jose = FlatMate('Jose', 20)
     mary = FlatMate('Mary', 25)
 
-    assert jose.pays(bill, mary) == 53
-    assert mary.pays(bill, jose) == 67
+    assert jose.pays(bill, mary) == 53.33
+    assert mary.pays(bill, jose) == 66.67

@@ -1,4 +1,5 @@
-from main import PdfReport
+from reports import PdfReport
+
 
 def test_pdf_report_init():
     report = PdfReport(filename = 'prueba')

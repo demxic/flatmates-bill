@@ -1,4 +1,4 @@
-from main import Bill
+from flat import Bill
 
 
 def test_bill_init():
